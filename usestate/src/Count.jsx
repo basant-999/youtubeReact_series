@@ -1,11 +1,10 @@
 
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Count = () => {
     const [Count ,setCount]=useState(0);
     
-
   return (
     <>
         <div>
@@ -13,7 +12,7 @@ const Count = () => {
             onClick={()=>{setCount(Count-1)}}
            >-</button>
            
-            {Count}
+           {Count}
            
            <button 
             onClick={()=>{setCount(Count+1)}}
