@@ -11,7 +11,7 @@ function App() {
     <>
       <h1>useRef hook</h1>
 
-{/* <Pageone/> */}
+<Pageone/>
 
 <Render/>
 
