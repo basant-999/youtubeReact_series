@@ -1,0 +1,34 @@
+{
+  "user": [
+    {
+      "id": "d48a",
+      "username": "basant",
+      "password": "1234"
+    },
+    {
+      "id": "1545",
+      "username": "kisan",
+      "password": "12344"
+    },
+    {
+      "id": "6621",
+      "username": "basa",
+      "password": "1234"
+    },
+    {
+      "id": "3ed0",
+      "username": "bk",
+      "password": "1234"
+    },
+    {
+      "id": "b13e",
+      "username": "atika",
+      "password": "1234"
+    },
+    {
+      "id": "ad8d",
+      "username": "aaru",
+      "password": "1234"
+    }
+  ]
+}
