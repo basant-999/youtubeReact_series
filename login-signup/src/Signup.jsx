@@ -1,111 +1,60 @@
-import React, { useState } from "react";
-import axios from "axios";
-import Login from "./Login";
+import axios from 'axios'
+import React, { useState } from 'react'
+import Login from './Login'
 
-function Signup() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const Signup = () => {
+    const [username,Setusername] = useState("")
+    const [Password,Setpassword] = useState("")
 
-  const [data ,Setdata] = useState(false)
+    const [data,Setdata] = useState(false)
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
+     const finalsubmit= async(e)=>{
+              e.preventDefault()
+           
+          try {
 
-    try {
-      // Check if username already exists
-      const res = await axios.get("http://localhost:3000/user");
-      const users = res.data;
+               const res = await axios.get("http://localhost:3000/user")
+            //    console.log(res.data)
+            const users = res.data
 
-      const existingUser = users.find((u) => u.username === username);
+           
 
-      if (existingUser) {
-        alert("❌ Username already exists");
-        return;
-      }
+               const exituser = users.find((item)=>item.username === username)
 
-      // Add new user
-      await axios.post("http://localhost:3000/user", {
-        username,
-        password,
-      });
+            //    console.log(exituser)
 
-      alert("✅ Signup successful");
-      setUsername("");
-      setPassword("");
-         Setdata(true)
-    } catch (err) {
-      console.error("Signup error:", err);
-      alert("Server error. Try again later.");
-    }
-  };
-  
-   if(data){
-    return <Login/>
-   }
+                  if(exituser){
+                       alert("already exists")
+                       return
+                  }
 
+              const respose = axios.post("http://localhost:3000/user",{username,Password})
+               alert("sucessful signup")
+               Setpassword("")
+               Setusername("")
+               Setdata(true)
+                 
+           } catch (error) {
+            console.log(error)
+            
+          }
+     }
+
+     if(data){
+          return <Login/>
+     }
   return (
-    <div style={styles.container}>
-      <form onSubmit={handleSignup} style={styles.form}>
-        <h2>Signup</h2>
-        <input
-          style={styles.input}
-          type="text"
-          placeholder="Choose Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          style={styles.input}
-          type="password"
-          placeholder="Choose Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button style={styles.button} type="submit">
-          Signup
-        </button>
-      </form>
-    </div>
-  );
+   <>
+       <div>
+             <form action="">
+
+                  Enter userName<input type="text" value={username} onChange={(e)=>{Setusername(e.target.value)}} /> <br />
+                  Enter Password <input type="text" value={Password} onChange={(e)=>{Setpassword(e.target.value)}} /> <br />
+                  <button onClick={finalsubmit}>submit</button>
+             </form>
+       </div>
+   </>
+  )
 }
 
-const styles = {
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-    backgroundColor: "#f2f2f2",
-  },
-  form: {
-    background: "#fff",
-    padding: "30px",
-    borderRadius: "10px",
-    width: "300px",
-    boxShadow: "0px 0px 10px rgba(0,0,0,0.1)",
-    fontFamily: "Arial, sans-serif",
-  },
-  input: {
-    width: "100%",
-    padding: "10px",
-    margin: "10px 0",
-    fontSize: "16px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
-  },
-  button: {
-    width: "100%",
-    padding: "10px",
-    backgroundColor: "#28a745",
-    color: "white",
-    fontSize: "16px",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-    marginTop: "10px",
-  },
-};
-
-export default Signup;
+export default Signup

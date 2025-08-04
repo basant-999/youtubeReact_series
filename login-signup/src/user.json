@@ -1,34 +1,30 @@
 {
   "user": [
     {
-      "id": "d48a",
-      "username": "basant",
-      "password": "1234"
-    },
-    {
-      "id": "1545",
+      "id": "50ce",
       "username": "kisan",
-      "password": "12344"
+      "Password": "1234"
     },
     {
-      "id": "6621",
-      "username": "basa",
-      "password": "1234"
+      "id": "3d35",
+      "username": "basant",
+      "Password": "1234"
     },
     {
-      "id": "3ed0",
-      "username": "bk",
-      "password": "1234"
+      "id": "df1f",
+      "username": "kisant",
+      "Password": "1234"
     },
     {
-      "id": "b13e",
-      "username": "atika",
-      "password": "1234"
+      "id": "92cf",
+      "username": "kis",
+      "Password": "1234"
     },
+    {},
     {
-      "id": "ad8d",
-      "username": "aaru",
-      "password": "1234"
+      "id": "9605",
+      "username": "hh",
+      "Password": "1234"
     }
   ]
 }

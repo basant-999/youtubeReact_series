@@ -1,64 +1,57 @@
+import axios from 'axios'
 import React, { useState } from 'react'
-import "./login.css"
 import Dashboard from './Dashboard'
+
+
 const Login = () => {
-    const [username,Setusername] = useState("")
-    const [password,Setpassword] = useState("")
+     const [username,Setusername] = useState("")
+        const [Password,Setpassword] = useState("")
+        const [data,Setdata] = useState(false)
 
-     const [Dashboard,Setdashboard] = useState(false)
-    const finalsubmit=async()=>{
-          e.preventDefault();
+          const finalsubmit=async(e)=>{
+              e.preventDefault()
+              try {
+                 const res= await axios.get("http://localhost:3000/user")
+                   const users = res.data 
+                    // console.log(users)
+                  const founduser = users.find((u)=>u.username === username)
+                  console.log(founduser)
 
-    try {
-      // ⚠️ Get all users from backend (no query string)
-      const res = await axios.get("http://localhost:5000/users");
-      const users = res.data;
+                  if(!founduser){
+                     alert("user not fund")
+                     return
+                  }
 
-      // 🔍 Step 1: Find user with matching username
-      const foundUser = users.find((u) => u.username === username);
+                  if(founduser.Password !== Password){
+                        alert("incorrect passwpod")
+                        return
+                  }
 
-      if (!foundUser) {
-        alert("❌ Username not found");
-        return;
-      }
+                  alert("successful login")
+                  Setdata(true)
+              
+              } catch (error) {
+                 console.log(error)
+              }
+          }
 
-      // 🔍 Step 2: Check password
-      if (foundUser.password !== password) {
-        alert("❌ Incorrect password");
-        return;
-      }
+          if(data){
+             return <Dashboard/>
+          }
 
-      alert("✅ Login successful");
-
-      Setdashboard(true)
-    } catch (err) {
-      console.error("Login error:", err);
-      alert("Server error. Try again later.");
-    }
-  };
-
-  if(Dashboard){
-    return <Dashboard/>
-  }
+           
   return (
-    <>
-         <div className="login-container">
-            <form className="login-form">
-                <h2>Login</h2>
-                <input
-                type="text"
-                placeholder="Username"
-                onChange={(e)=>{Setusername(e.target.value)}}
-                />
-                <input
-                type="password"
-                placeholder="Password"
-                 onChange={(e)=>{Setpassword(e.target.value)}}
-                />
-                <button onClick={finalsubmit} type="submit">Login</button>
-            </form>
-    </div>
-    </>
+      <>
+            <h1>login</h1>
+         <div>
+              <form action="">
+                    
+                   Enter username <input type="text"  value={username} onChange={(e)=>{Setusername(e.target.value)}}  /> <br />
+                    Enter password <input type="text" value={Password} onChange={(e)=>{Setpassword(e.target.value)}}  /> <br />
+                    <button onClick={finalsubmit}>login</button>
+              </form>
+         </div>
+      </>
   )
 }
 
